@@ -2,8 +2,6 @@ let sampleInput = 'Sif (Zacian) @ Rusted Sword  \nAbility: Intrepid Sword  \nEVs
 let sampleInput2 = "HTV-2 (Whimsicott) (M) @ Mental Herb  \nAbility: Prankster  \nShiny: Yes  \nEVs: 252 HP / 4 SpA / 252 Spe  \nTimid Nature  \nIVs: 23 Atk  \n- Moonblast  \n- Tailwind  \n- Taunt  \n- Helping Hand";
 let sampleInput3 = 'CREATINE (Grimmsnarl-Gmax) @ Light Clay  \nAbility: Prankster  \nLevel: 53  \nShiny: Yes  \nEVs: 12 HP / 20 Atk / 4 Def / 12 SpA / 252 SpD / 208 Spe  \nQuiet Nature  \nIVs: 15 HP / 14 Atk / 12 Def / 11 SpA / 10 SpD / 9 Spe  \n- Light Screen  \n- Reflect  \n- Darkest Lariat  \n- Spirit Break';
 
-parseInput(sampleInput);
-
 function parseInput(input){
 	//set up the various fields we will use to store relevent info
 	//parsed from the input string
@@ -33,6 +31,7 @@ function parseInput(input){
 	function parseLine (line, isFirstLine){
 		if(isFirstLine){
 			[line, item] = line.split(' @ ');
+			item = item.trim();
 			if(line.endsWith(' (M)')) {
 				gender = 'M';
 				line = line.slice(0, -4);
@@ -154,38 +153,18 @@ function parseInput(input){
 			}
 		}
 	}
-	console.log(nickname);
-	console.log(species);
-	console.log(item);
-	console.log(gender);
-	console.log(ability);
-	console.log(isShiny);
-	console.log(nature);
-	console.log(level);
-	console.log(moves);
-	console.log(EVs);
-	console.log(IVs);
+	const returns = [];
+	returns.push(nickname);
+	returns.push(species);
+	returns.push(item);
+	returns.push(gender);
+	returns.push(ability);
+	returns.push(isShiny);
+	returns.push(nature);
+	returns.push(level);
+	returns.push(moves);
+	returns.push(EVs);
+	returns.push(IVs);
 
-	document.getElementById("con").innerHTML += nickname;
-	document.getElementById("con").innerHTML += "<br>";
-	document.getElementById("con").innerHTML += species;
-	document.getElementById("con").innerHTML += "<br>";
-	document.getElementById("con").innerHTML += item;
-	document.getElementById("con").innerHTML += "<br>";
-	document.getElementById("con").innerHTML += gender;
-	document.getElementById("con").innerHTML += "<br>";
-	document.getElementById("con").innerHTML += ability;
-	document.getElementById("con").innerHTML += "<br>";
-	document.getElementById("con").innerHTML += isShiny;
-	document.getElementById("con").innerHTML += "<br>";
-	document.getElementById("con").innerHTML += nature;
-	document.getElementById("con").innerHTML += "<br>";
-	document.getElementById("con").innerHTML += level;
-	document.getElementById("con").innerHTML += "<br>";
-	document.getElementById("con").innerHTML += moves;
-	document.getElementById("con").innerHTML += "<br>";
-	document.getElementById("con").innerHTML += EVs;
-	document.getElementById("con").innerHTML += "<br>";
-	document.getElementById("con").innerHTML += IVs;
-	document.getElementById("con").innerHTML += "<br>";
+	return returns;
 }

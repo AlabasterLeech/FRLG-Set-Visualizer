@@ -1,23 +1,15 @@
 const jimp = require('jimp');
 const fs = require('fs');
 
-let string = "öôòóàáâäèéêëîïíìûüùúñ";
+let string = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 string = string.toUpperCase();
 
 async function crop() {
   for(let i = 0; i < string.length; i++){
-    let imgstring = 'images/fonttest/' + string.substring(i,i+1) + '.png';
-    const image = await jimp.read('images/fonttest/somelowercase.png');
-    image.crop(i* 6, 0, 6, 14).write(imgstring);
+    let imgstring = 'images/fonttest/' + string.codePointAt(i) + '.png';
+    const image = await jimp.read('images/fonttest/capitals.png');
+    image.crop(i * 6, 0, 6, 14).write(imgstring);
  }
-}
-
-async function rename(){
-  for(let i = 0; i < string.length; i++){
-    let imgstring = 'images/fonts/dark/upper/' + string[i] +'.png';
-    const image = await jimp.read(imgstring);
-    image.write('images/fonttest/' + string.codePointAt(i) + '.png')
-  }
 }
 
 async function constructText(input){
@@ -52,9 +44,29 @@ async function constructText(input){
       curWidth += widths[i];
     }
 
-    newTextImage.write('images/fonttest/testresult.png');
+    newTextImage.write('images/temp/' + input + '.png');
 
   }
 }
 
-constructText("shea is a cool bitch");
+//Clears the temporary files that are used in constructing the output.
+//Should only be called after construction is complete.
+function clearTemp(){
+  fs.readdir('images/temp/', (err, files) => {
+    if (err) {
+      throw err;
+    }
+    else{
+      for(let i = 0; i < files.length; i++){
+        fs.unlink('images/temp/' + files[i], (err) => {
+          if (err) {
+            throw err;
+          }
+          else{
+            console.log("File is deleted.");
+          }
+        });
+      }
+    }
+  });
+}
