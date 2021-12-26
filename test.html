@@ -4,15 +4,19 @@
    <script src="inputProcessing.js"></script>
    <script src="imageProcessing.js"></script>
   <h1>The input text box will go below this.</h1>
+  <img src="shinybackground.png" alt="background">
   <textarea id="userinput" rows="8" cols="80"></textarea>
 
   <button type="button" onclick="makeImage()">Make Image!</button>
 
   <script>
-    function makeImage(){
+    async function makeImage(){
       const inputs = parseInput(document.getElementById('userinput').value);
       console.log(inputs);
-      document.getElementById("con").innerHTML = inputs;
+
+      constructImage(inputs);
+
+      document.getElementById("con").innerHTML = "<img src=\x22MOONBLAST.png\x22 alt=\x22alttext\x22>";
     }
   </script>
 
