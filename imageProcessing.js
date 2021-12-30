@@ -1,5 +1,396 @@
 const jimp = require('jimp');
 const fs = require('fs');
+const fetch = require('node-fetch');
+
+const pkNumLookup = {
+  bulbasaur: "001",
+ivysaur: "002",
+venusaur: "003",
+charmander: "004",
+charmeleon: "005",
+charizard: "006",
+squirtle: "007",
+wartortle: "008",
+blastoise: "009",
+caterpie: "010",
+metapod: "011",
+butterfree: "012",
+weedle: "013",
+kakuna: "014",
+beedrill: "015",
+pidgey: "016",
+pidgeotto: "017",
+pidgeot: "018",
+rattata: "019",
+raticate: "020",
+spearow: "021",
+fearow: "022",
+ekans: "023",
+arbok: "024",
+pikachu: "025",
+raichu: "026",
+sandshrew: "027",
+sandslash: "028",
+nidoranf: "029",
+nidorina: "030",
+nidoqueen: "031",
+nidoranm: "032",
+nidorino: "033",
+nidoking: "034",
+clefairy: "035",
+clefable: "036",
+vulpix: "037",
+ninetales: "038",
+jigglypuff: "039",
+wigglytuff: "040",
+zubat: "041",
+golbat: "042",
+oddish: "043",
+gloom: "044",
+vileplume: "045",
+paras: "046",
+parasect: "047",
+venonat: "048",
+venomoth: "049",
+diglett: "050",
+dugtrio: "051",
+meowth: "052",
+persian: "053",
+psyduck: "054",
+golduck: "055",
+mankey: "056",
+primeape: "057",
+growlithe: "058",
+growlithe: "058",
+arcanine: "059",
+poliwag: "060",
+poliwhirl: "061",
+poliwrath: "062",
+abra: "063",
+kadabra: "064",
+alakazam: "065",
+machop: "066",
+machoke: "067",
+machamp: "068",
+bellsprout: "069",
+weepinbell: "070",
+victreebel: "071",
+tentacool: "072",
+tentacruel: "073",
+geodude: "074",
+graveler: "075",
+golem: "076",
+ponyta: "077",
+rapidash: "078",
+slowpoke: "079",
+slowbro: "080",
+magnemite: "081",
+magneton: "082",
+farfetchd: "083",
+doduo: "084",
+dodrio: "085",
+seel: "086",
+dewgong: "087",
+grimer: "088",
+muk: "089",
+shellder: "090",
+cloyster: "091",
+gastly: "092",
+haunter: "093",
+gengar: "094",
+onix: "095",
+drowzee: "096",
+hypno: "097",
+krabby: "098",
+kingler: "099",
+voltorb: "100",
+electrode: "101",
+exeggcute: "102",
+exeggutor: "103",
+cubone: "104",
+marowak: "105",
+hitmonlee: "106",
+hitmonchan: "107",
+lickitung: "108",
+koffing: "109",
+weezing: "110",
+rhyhorn: "111",
+rhydon: "112",
+chansey: "113",
+tangela: "114",
+kangaskhan: "115",
+horsea: "116",
+seadra: "117",
+goldeen: "118",
+seaking: "119",
+staryu: "120",
+starmie: "121",
+mrmime: "122",
+scyther: "123",
+jynx: "124",
+electabuzz: "125",
+magmar: "126",
+pinsir: "127",
+tauros: "128",
+magikarp: "129",
+gyarados: "130",
+lapras: "131",
+ditto: "132",
+eevee: "133",
+vaporeon: "134",
+jolteon: "135",
+flareon: "136",
+porygon: "137",
+omanyte: "138",
+omastar: "139",
+kabuto: "140",
+kabutops: "141",
+aerodactyl: "142",
+snorlax: "143",
+articuno: "144",
+zapdos: "145",
+moltres: "146",
+dratini: "147",
+dragonair: "148",
+dragonite: "149",
+mewtwo: "150",
+mew: "151",
+chikorita: "152",
+bayleef: "153",
+meganium: "154",
+cyndaquil: "155",
+quilava: "156",
+typhlosion: "157",
+totodile: "158",
+croconaw: "159",
+feraligatr: "160",
+sentret: "161",
+furret: "162",
+hoothoot: "163",
+noctowl: "164",
+ledyba: "165",
+ledian: "166",
+spinarak: "167",
+ariados: "168",
+crobat: "169",
+chinchou: "170",
+lanturn: "171",
+pichu: "172",
+cleffa: "173",
+igglybuff: "174",
+togepi: "175",
+togetic: "176",
+natu: "177",
+xatu: "178",
+mareep: "179",
+flaaffy: "180",
+ampharos: "181",
+bellossom: "182",
+marill: "183",
+azumarill: "184",
+sudowoodo: "185",
+politoed: "186",
+hoppip: "187",
+skiploom: "188",
+jumpluff: "189",
+aipom: "190",
+sunkern: "191",
+sunflora: "192",
+yanma: "193",
+wooper: "194",
+quagsire: "195",
+espeon: "196",
+umbreon: "197",
+murkrow: "198",
+slowking: "199",
+misdreavus: "200",
+unown: "201",
+wobbuffet: "202",
+girafarig: "203",
+pineco: "204",
+forretress: "205",
+dunsparce: "206",
+gligar: "207",
+steelix: "208",
+snubbull: "209",
+granbull: "210",
+qwilfish: "211",
+scizor: "212",
+shuckle: "213",
+heracross: "214",
+sneasel: "215",
+teddiursa: "216",
+ursaring: "217",
+slugma: "218",
+magcargo: "219",
+swinub: "220",
+piloswine: "221",
+corsola: "222",
+remoraid: "223",
+octillery: "224",
+delibird: "225",
+mantine: "226",
+skarmory: "227",
+houndour: "228",
+houndoom: "229",
+kingdra: "230",
+phanpy: "231",
+donphan: "232",
+porygon2: "233",
+stantler: "234",
+smeargle: "235",
+tyrogue: "236",
+hitmontop: "237",
+smoochum: "238",
+elekid: "239",
+magby: "240",
+miltank: "241",
+blissey: "242",
+raikou: "243",
+entei: "244",
+suicune: "245",
+larvitar: "246",
+pupitar: "247",
+tyranitar: "248",
+lugia: "249",
+hooh: "250",
+celebi: "251",
+treecko: "252",
+grovyle: "253",
+sceptile: "254",
+torchic: "255",
+combusken: "256",
+blaziken: "257",
+mudkip: "258",
+marshtomp: "259",
+swampert: "260",
+poochyena: "261",
+mightyena: "262",
+zigzagoon: "263",
+linoone: "264",
+wurmple: "265",
+silcoon: "266",
+beautifly: "267",
+cascoon: "268",
+dustox: "269",
+lotad: "270",
+lombre: "271",
+ludicolo: "272",
+seedot: "273",
+nuzleaf: "274",
+shiftry: "275",
+taillow: "276",
+swellow: "277",
+wingull: "278",
+pelipper: "279",
+ralts: "280",
+kirlia: "281",
+gardevoir: "282",
+surskit: "283",
+masquerain: "284",
+shroomish: "285",
+breloom: "286",
+slakoth: "287",
+vigoroth: "288",
+slaking: "289",
+nincada: "290",
+ninjask: "291",
+shedinja: "292",
+whismur: "293",
+loudred: "294",
+exploud: "295",
+makuhita: "296",
+hariyama: "297",
+azurill: "298",
+nosepass: "299",
+skitty: "300",
+delcatty: "301",
+sableye: "302",
+mawile: "303",
+aron: "304",
+lairon: "305",
+aggron: "306",
+meditite: "307",
+medicham: "308",
+electrike: "309",
+manectric: "310",
+plusle: "311",
+minun: "312",
+volbeat: "313",
+illumise: "314",
+roselia: "315",
+gulpin: "316",
+swalot: "317",
+carvanha: "318",
+sharpedo: "319",
+wailmer: "320",
+wailord: "321",
+numel: "322",
+camerupt: "323",
+torkoal: "324",
+spoink: "325",
+grumpig: "326",
+spinda: "327",
+trapinch: "328",
+vibrava: "329",
+flygon: "330",
+cacnea: "331",
+cacturne: "332",
+swablu: "333",
+altaria: "334",
+zangoose: "335",
+seviper: "336",
+lunatone: "337",
+solrock: "338",
+barboach: "339",
+whiscash: "340",
+corphish: "341",
+crawdaunt: "342",
+baltoy: "343",
+claydol: "344",
+lileep: "345",
+cradily: "346",
+anorith: "347",
+armaldo: "348",
+feebas: "349",
+milotic: "350",
+castform: "351",
+kecleon: "352",
+shuppet: "353",
+banette: "354",
+duskull: "355",
+dusclops: "356",
+tropius: "357",
+chimecho: "358",
+absol: "359",
+wynaut: "360",
+snorunt: "361",
+glalie: "362",
+spheal: "363",
+sealeo: "364",
+walrein: "365",
+clamperl: "366",
+huntail: "367",
+gorebyss: "368",
+relicanth: "369",
+luvdisc: "370",
+bagon: "371",
+shelgon: "372",
+salamence: "373",
+beldum: "374",
+metang: "375",
+metagross: "376",
+regirock: "377",
+regice: "378",
+registeel: "379",
+latias: "380",
+latios: "381",
+kyogre: "382",
+groudon: "383",
+rayquaza: "384",
+jirachi: "385",
+deoxys: "386",
+};
 
 const typeLookup = {
   pound: "normal",
@@ -791,30 +1182,32 @@ mistyexplosion: "fairy",
 grassyglide: "grass",
 risingvoltage: "electric",
 terrainpulse: "normal",
-skittersmack: "bug",
-burningjealousy: "fire",
-lashout: "dark",
-poltergeist: "ghost",
-corrosivegas: "poison",
-coaching: "fighting",
-flipturn: "water",
-tripleaxel: "ice",
-dualwingbeat: "flying",
-scorchingsands: "ground",
-junglehealing: "grass",
-wickedblow: "dark",
-surgingstrikes: "water",
-thundercage: "electric",
-dragonenergy: "dragon",
-freezingglare: "psychic",
-fierywrath: "dark",
-thunderouskick: "fighting",
-glaciallance: "ice",
-astralbarrage: "ghost",
-eeriespell: "psychic",
+  skittersmack: "bug",
+  burningjealousy: "fire",
+  lashout: "dark",
+  poltergeist: "ghost",
+  corrosivegas: "poison",
+  coaching: "fighting",
+  flipturn: "water",
+  tripleaxel: "ice",
+  dualwingbeat: "flying",
+  scorchingsands: "ground",
+  junglehealing: "grass",
+  wickedblow: "dark",
+  surgingstrikes: "water",
+  thundercage: "electric",
+  dragonenergy: "dragon",
+  freezingglare: "psychic",
+  fierywrath: "dark",
+  thunderouskick: "fighting",
+  glaciallance: "ice",
+  astralbarrage: "ghost",
+  eeriespell: "psychic",
 };
 
 const typeMap = (type) => typeLookup[type] || "???";
+
+const numMap = (num) => pkNumLookup[num] || "notPresent"
 
 async function crop() {
   for(let i = 0; i < string.length; i++){
@@ -822,6 +1215,17 @@ async function crop() {
     const image = await jimp.read('images/fonttest/capitals.png');
     image.crop(i * 6, 0, 6, 14).write(imgstring);
  }
+}
+
+function fileExists(image_url){
+
+    var http = new XMLHttpRequest();
+
+    http.open('HEAD', image_url, false);
+    http.send();
+
+    return http.status != 404;
+
 }
 
 async function constructDarkText(input){
@@ -856,7 +1260,6 @@ async function constructDarkText(input){
       curWidth += widths[i];
     }
 
-    await newTextImage.writeAsync('images/temp/' + input + '.png');
     return newTextImage;
   }
 }
@@ -899,9 +1302,60 @@ function clearTemp(){
 async function constructImage(inputs){
   var itemImg;
   var itemIcon;
+  var moveImgs = [];
+  var abilityImg;
+  var currentStatImg;
 
+  inputs[6] = inputs[6].toLowerCase();
+
+  //Shinyness
+  var base = new jimp(240,160);
+  if(inputs[5]){
+    base = await jimp.read('images/shinybackground.png');
+  }
+  else {
+    base = await jimp.read('images/background.png');
+  }
+
+  //Item
+  //Some item names are too long and therefore have hardcoded abbreviations
   if(inputs[2]){
-    itemImg = await constructDarkText(inputs[2].toUpperCase());
+    if(inputs[2].toLowerCase() === "never-melt ice"){
+      itemImg = await constructDarkText("NVR-MELT ICE");
+    }
+    else if(inputs[2].toLowerCase() === "weakness policy"){
+      itemImg = await constructDarkText("WEAKNESS POL.");
+    }
+    else if(inputs[2].toLowerCase() === "fighting memory"){
+      itemImg = await constructDarkText("FIGHTING MEM.");
+    }
+    else if(inputs[2].toLowerCase() === "deep sea scale"){
+      itemImg = await constructDarkText("DEEP SEA SCL.");
+    }
+    else if(inputs[2].toLowerCase() === "deep sea tooth"){
+      itemImg = await constructDarkText("DEEP SEA TTH.");
+    }
+    else if(inputs[2].toLowerCase() === "safety goggles"){
+      itemImg = await constructDarkText("SAFETY GGLS.");
+    }
+    else if(inputs[2].toLowerCase() === "ultranecrozium z"){
+      itemImg = await constructDarkText("ULT.NECROZ. Z");
+    }
+    else if(inputs[2].toLowerCase() === "protective pads"){
+      itemImg = await constructDarkText("PROTCTV. PADS");
+    }
+    else if(inputs[2].toLowerCase() === "psychic memory"){
+      itemImg = await constructDarkText("PSYCHIC MEM.");
+    }
+    else if(inputs[2].toLowerCase() === "electric memory"){
+      itemImg = await constructDarkText("ELECTRIC MEM.");
+    }
+    else if(inputs[2].toLowerCase() === "terrain extender"){
+      itemImg = await constructDarkText("TERRAIN XTNDR.");
+    }
+    else{
+      itemImg = await constructDarkText(inputs[2].toUpperCase());
+    }
     if (fs.existsSync('images/items/' + inputs[2].replace(/\s+/g, '').toLowerCase() + '.png')){
       itemIcon = await jimp.read('images/items/' + inputs[2].replace(/\s+/g, '').toLowerCase() + '.png');
     }
@@ -914,20 +1368,203 @@ async function constructImage(inputs){
     itemIcon = await jimp.read('images/items/noitem.png');
   }
 
-  const abilityImg = await constructDarkText(inputs[4].toUpperCase());
-  const moveImgs = [];
+  //Ability
+  if(inputs[4]){
+    abilityImg = await constructDarkText(inputs[4].toUpperCase());
+  }
+  else{
+    abilityImg = await constructDarkText('-');
+  }
+
+  //Moves
   for(let i = 0; i < inputs[8].length; i++){
     moveImgs.push(await constructDarkText(inputs[8][i].toUpperCase()));
   }
 
-  var base = new jimp(240,160);
+  //Stats
+  if(inputs[6] === 'lonely'){
+    await base.composite((await jimp.read('images/stats/atkup.png')), 124 , 43);
+    inputs[9][1] = "+" + inputs[9][1];
 
-  if(inputs[5]){
-    base = await jimp.read('images/shinybackground.png');
+    await base.composite((await jimp.read('images/stats/defdown.png')), 124 , 55);
+    inputs[9][2] = "-" + inputs[9][2];
   }
-  else {
-    base = await jimp.read('images/background.png');
+  else if(inputs[6] === 'adamant'){
+    await base.composite((await jimp.read('images/stats/atkup.png')), 124 , 43);
+    inputs[9][1] = "+" + inputs[9][1];
+
+    await base.composite((await jimp.read('images/stats/spadown.png')), 124 , 67);
+    inputs[9][3] = "-" + inputs[9][3];
   }
+  else if(inputs[6] === 'naughty'){
+    await base.composite((await jimp.read('images/stats/atkup.png')), 124 , 43);
+    inputs[9][1] = "+" + inputs[9][1];
+
+    await base.composite((await jimp.read('images/stats/spddown.png')), 124 , 79);
+    inputs[9][4] = "-" + inputs[9][4];
+  }
+  else if(inputs[6] === 'brave'){
+    await base.composite((await jimp.read('images/stats/atkup.png')), 124 , 43);
+    inputs[9][1] = "+" + inputs[9][1];
+
+    await base.composite((await jimp.read('images/stats/spedown.png')), 124 , 91);
+    inputs[9][5] = "-" + inputs[9][5];
+  }
+  else if(inputs[6] === 'bold'){
+    await base.composite((await jimp.read('images/stats/defup.png')), 124 , 55);
+    inputs[9][2] = "+" + inputs[9][2];
+
+    await base.composite((await jimp.read('images/stats/atkdown.png')), 124 , 43);
+    inputs[9][1] = "-" + inputs[9][1];
+  }
+  else if(inputs[6] === 'impish'){
+    await base.composite((await jimp.read('images/stats/defup.png')), 124 , 55);
+    inputs[9][2] = "+" + inputs[9][2];
+
+    await base.composite((await jimp.read('images/stats/spadown.png')), 124 , 67);
+    inputs[9][3] = "-" + inputs[9][3];
+  }
+  else if(inputs[6] === 'lax'){
+    await base.composite((await jimp.read('images/stats/defup.png')), 124 , 55);
+    inputs[9][2] = "+" + inputs[9][2];
+
+    await base.composite((await jimp.read('images/stats/spddown.png')), 124 , 79);
+    inputs[9][4] = "-" + inputs[9][4];
+  }
+  else if(inputs[6] === 'relaxed'){
+    await base.composite((await jimp.read('images/stats/defup.png')), 124 , 55);
+    inputs[9][2] = "+" + inputs[9][2];
+
+    await base.composite((await jimp.read('images/stats/spedown.png')), 124 , 91);
+    inputs[9][5] = "-" + inputs[9][5];
+  }
+  else if(inputs[6] === 'modest'){
+    await base.composite((await jimp.read('images/stats/spaup.png')), 124 , 67);
+    inputs[9][3] = "+" + inputs[9][3];
+
+    await base.composite((await jimp.read('images/stats/atkdown.png')), 124 , 43);
+    inputs[9][1] = "-" + inputs[9][1];
+  }
+  else if(inputs[6] === 'mild'){
+    await base.composite((await jimp.read('images/stats/spaup.png')), 124 , 67);
+    inputs[9][3] = "+" + inputs[9][3];
+
+    await base.composite((await jimp.read('images/stats/defdown.png')), 124 , 55);
+    inputs[9][2] = "-" + inputs[9][2];
+  }
+  else if(inputs[6] === 'rash'){
+    await base.composite((await jimp.read('images/stats/spaup.png')), 124 , 67);
+    inputs[9][3] = "+" + inputs[9][3];
+
+    await base.composite((await jimp.read('images/stats/spddown.png')), 124 , 79);
+    inputs[9][4] = "-" + inputs[9][4];
+  }
+  else if(inputs[6] === 'quiet'){
+    await base.composite((await jimp.read('images/stats/spaup.png')), 124 , 67);
+    inputs[9][3] = "+" + inputs[9][3];
+
+    await base.composite((await jimp.read('images/stats/spedown.png')), 124 , 91);
+    inputs[9][5] = "-" + inputs[9][5];
+  }
+  else if(inputs[6] === 'calm'){
+    await base.composite((await jimp.read('images/stats/spdup.png')), 124 , 79);
+    inputs[9][4] = "+" + inputs[9][4];
+
+    await base.composite((await jimp.read('images/stats/atkdown.png')), 124 , 43);
+    inputs[9][1] = "-" + inputs[9][1];
+  }
+  else if(inputs[6] === 'gentle'){
+    await base.composite((await jimp.read('images/stats/spdup.png')), 124 , 79);
+    inputs[9][4] = "+" + inputs[9][4];
+
+    await base.composite((await jimp.read('images/stats/defdown.png')), 124 , 55);
+    inputs[9][2] = "-" + inputs[9][2];
+  }
+  else if(inputs[6] === 'careful'){
+    await base.composite((await jimp.read('images/stats/spdup.png')), 124 , 79);
+    inputs[9][4] = "+" + inputs[9][4];
+
+    await base.composite((await jimp.read('images/stats/spadown.png')), 124 , 67);
+    inputs[9][3] = "-" + inputs[9][3];
+  }
+  else if(inputs[6] === 'sassy'){
+    await base.composite((await jimp.read('images/stats/spdup.png')), 124 , 79);
+    inputs[9][4] = "+" + inputs[9][4];
+
+    await base.composite((await jimp.read('images/stats/spedown.png')), 124 , 91);
+    inputs[9][5] = "-" + inputs[9][5];
+  }
+  else if(inputs[6] === 'timid'){
+    await base.composite((await jimp.read('images/stats/speup.png')), 124 , 91);
+    inputs[9][5] = "+" + inputs[9][5];
+
+    await base.composite((await jimp.read('images/stats/atkdown.png')), 124 , 43);
+    inputs[9][1] = "-" + inputs[9][1];
+  }
+  else if(inputs[6] === 'hasty'){
+    await base.composite((await jimp.read('images/stats/speup.png')), 124 , 91);
+    inputs[9][5] = "+" + inputs[9][5];
+
+    await base.composite((await jimp.read('images/stats/defdown.png')), 124 , 55);
+    inputs[9][2] = "-" + inputs[9][2];
+  }
+  else if(inputs[6] === 'jolly'){
+    await base.composite((await jimp.read('images/stats/speup.png')), 124 , 91);
+    inputs[9][5] = "+" + inputs[9][5];
+
+    await base.composite((await jimp.read('images/stats/spddown.png')), 124 , 67);
+    inputs[9][3] = "-" + inputs[9][3];
+  }
+  else if(inputs[6] === 'naive'){
+    await base.composite((await jimp.read('images/stats/speup.png')), 124 , 91);
+    inputs[9][5] = "+" + inputs[9][5];
+
+    await base.composite((await jimp.read('images/stats/spedown.png')), 124 , 79);
+    inputs[9][4] = "-" + inputs[9][4];
+  }
+
+  //IVs and EVs
+  let statWidth = 0;
+  for(let i = 0; i < inputs[9].length; i++){
+    currentStatImg = await constructDarkText(inputs[9][i].toString());
+    statWidth = currentStatImg.bitmap.width;
+    await base.composite(currentStatImg, 236 - statWidth, 30 + 12*i);
+
+    currentStatImg = await constructDarkText(inputs[10][i].toString());
+    statWidth = currentStatImg.bitmap.width;
+    await base.composite(currentStatImg, 202 - statWidth, 30 + 12*i);
+  }
+
+  //Pokemon Sprite
+  let dexNum = numMap(inputs[1].replace(/[^0-9a-z]/gi, '').toLowerCase());
+  var speciesImg;
+  if(dexNum === "notPresent"){
+    speciesImg = await jimp.read('images/pokemon/missing.png');
+  }
+  else if(inputs[5]){
+    const res = await fetch(("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/shiny/" + dexNum + ".png"), { method: 'HEAD' });
+    if (res.ok) {
+      speciesImg = await jimp.read("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/shiny/" + dexNum + ".png");
+    }
+    else {
+      speciesImg = await jimp.read("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/shiny/" + dexNum + ".png");
+    }
+    speciesImg = speciesImg.flip(true,false);
+  }
+  else{
+    const res = await fetch(("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/" + dexNum + ".png"), { method: 'HEAD' });
+    if (res.ok) {
+      speciesImg = await jimp.read("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/" + dexNum + ".png");
+    }
+    else {
+      speciesImg = await jimp.read("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/" + dexNum + ".png");
+    }
+    speciesImg = speciesImg.flip(true,false);
+  }
+  await base.composite(speciesImg, 58 - speciesImg.bitmap.width/2, 65 - speciesImg.bitmap.width/2);
+
+  //Composite everything else
+
   await base.composite(itemImg, 7, 113);
   await base.composite(abilityImg, 7, 141);
   for(let i = 0; i < moveImgs.length; i++){
@@ -937,47 +1574,49 @@ async function constructImage(inputs){
   }
   await base.composite(itemIcon, 115 - itemIcon.bitmap.width, 93 - itemIcon.bitmap.height);
 
+  await base.write('images/temp/output-' + inputs[0] + '.png');
 
-  await base.write('images/temp/bigtest.png');
+
 
 }
 
+
 const testInputs = [];
-testInputs.push("HTV-2");
-testInputs.push("Whimsicott");
-testInputs.push('Mental Herb');
-testInputs.push("M");
-testInputs.push("Prankster");
+testInputs.push("WANNACRY");
+testInputs.push("Porygon2");
+testInputs.push("Eviolite");
+testInputs.push("");
+testInputs.push("Download");
 testInputs.push(true);
-testInputs.push("Timid");
+testInputs.push("Modest");
 testInputs.push(100);
 const moves = [];
-moves.push("Moonblast");
-moves.push("Tailwind");
-moves.push("Taunt");
-moves.push("Helping Hand");
+moves.push("Trick Room");
+moves.push("Recover");
+moves.push("Ice Beam");
+moves.push("Eerie Impulse");
 testInputs.push(moves);
 
+const ivs = [];
+ivs.push(31);
+ivs.push(0);
+ivs.push(31);
+ivs.push(31);
+ivs.push(31);
+ivs.push(0);
+
+
+
 const evs = [];
-evs.push(31);
+evs.push(252);
 evs.push(0);
-evs.push(31);
-evs.push(31);
-evs.push(31);
-evs.push(31);
+evs.push(0);
+evs.push(252);
+evs.push(4);
+evs.push(0);
 
 testInputs.push(evs);
-
-const ivs = [];
-ivs.push(252);
-ivs.push(0);
-ivs.push(0);
-ivs.push(4);
-ivs.push(0);
-ivs.push(252);
-
 testInputs.push(ivs);
-
 
 console.log(testInputs);
 
