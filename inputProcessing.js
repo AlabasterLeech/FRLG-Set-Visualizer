@@ -55,6 +55,7 @@ function parseInput(input){
 		if(isFirstLine){
 			[line, item] = line.split(' @ ');
 			item = item.trim();
+			gender = '';
 			if(line.endsWith(' (M)')) {
 				gender = 'M';
 				line = line.slice(0, -4);
@@ -62,9 +63,6 @@ function parseInput(input){
 			if(line.endsWith(' (F)')) {
 				gender = 'F';
 				line = line.slice(0, -4);
-			}
-			else{
-				gender = "";
 			}
 			let parenIndex = line.lastIndexOf(' (');
 			if(line.charAt(line.length - 1) === ')' && parenIndex !== -1) {
@@ -235,4 +233,4 @@ console.log("testInputs.push(evs);");
 console.log("testInputs.push(ivs);");
 }
 
-makeImageProcessingCode(parseInput(si5));
+makeImageProcessingCode(parseInput(sampleInput2));
