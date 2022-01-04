@@ -7,3 +7,12 @@ This is entirely a personal project and was mostly embarked on as a way for me t
 At any rate, thank you for showing interest in this project and/or me. Hopefully, at the time you are reading this there are other things on my github profile which leave you with a more substantial positive impression of me.
 
 The image processing portion of the code uses/will use JIMP (https://github.com/oliver-moran/jimp).
+
+
+Item sprites are from Serebii
+Gen 1-3 Sprites are ripped directly from Pokemon FireRed and Pokemon Emerald.
+Gen 4 and Gen 5 sprites are from The DS-style 64x64 Pokémon Sprite Resource (https://www.pokecommunity.com/showthread.php?t=267728)
+Gen 6 and mega sprites are from Gen VI: DS-Style 64x64 Pokemon Sprite Resource (https://www.pokecommunity.com/showthread.php?t=314422)
+Gen 7 and 8 sprites, including Gigantamax are from DS-style Gen VII and Beyond Pokémon Sprite Repository in 64x64 (https://www.pokecommunity.com/showthread.php?t=368703)
+
+All other image resources were either ripped directly from Pokemon FireRed or made by yours truly in Krita.
