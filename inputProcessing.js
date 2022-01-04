@@ -1,7 +1,7 @@
 let sampleInput = 'Sif (Zacian) @ Rusted Sword  \nAbility: Intrepid Sword  \nEVs: 252 Atk / 4 SpD / 252 Spe  \nJolly Nature  \n- Protect  \n- Play Rough  \n- Iron Head  \n- Sacred Sword';
 let sampleInput2 = "HTV-2 (Whimsicott) (M) @ Mental Herb  \nAbility: Prankster  \nShiny: Yes  \nEVs: 252 HP / 4 SpA / 252 Spe  \nTimid Nature  \nIVs: 23 Atk  \n- Moonblast  \n- Tailwind  \n- Taunt  \n- Helping Hand";
 let sampleInput3 = 'CREATINE (Grimmsnarl-Gmax) @ Light Clay  \nAbility: Prankster  \nLevel: 53  \nShiny: Yes  \nEVs: 12 HP / 20 Atk / 4 Def / 12 SpA / 252 SpD / 208 Spe  \nQuiet Nature  \nIVs: 15 HP / 14 Atk / 12 Def / 11 SpA / 10 SpD / 9 Spe  \n- Light Screen  \n- Reflect  \n- Darkest Lariat  \n- Spirit Break';
-let sampleInput4 = "King Brood X (Shedinja) @ Safety Goggles  \n"
+let sampleInput4 = "King Brood X (Shedinja) (M) @ Safety Goggles  \n"
 				+ "Ability: Wonder Guard  \n"
 				+ "Level: 29  \n"
 				+ "EVs: 252 Atk / 4 SpD / 252 Spe  \n"
