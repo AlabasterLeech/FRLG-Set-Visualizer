@@ -34,6 +34,23 @@ const pkNumLookup = {
   ekans: "23",
   arbok: "24",
   pikachu: "25",
+  pikachualola: "25-alola",
+  pikachuhoenn: "25-hoenn",
+  pikachukalos: "25-kalos",
+  pikachuoriginal: "25-original",
+  pikachupartner: "25-partner",
+  pikachusinnoh: "25-sinnoh",
+  pikachuunova: "25-unova",
+  pikachubelle: "25-belle",
+  pikachucosplay: "25-cosplay",
+  pikachulibre: "25-libre",
+  pikachuphd: "25-phd",
+  pikachupopstar: "25-pop-star",
+  pikachurockstar: "25-rock-star",
+  pikachustarter: "25-starter",
+  pikachuworld: "25-world",
+  pikachufly: "25-fly",
+  pikachusurf: "25-surf",
   raichu: "26",
   sandshrew: "27",
   sandslash: "28",
@@ -637,6 +654,7 @@ const pkNumLookup = {
   pidove: "519",
   tranquill: "520",
   unfezant: "521",
+  unfezantf: "521-f",
   blitzle: "522",
   zebstrika: "523",
   roggenrola: "524",
@@ -824,6 +842,7 @@ const pkNumLookup = {
   vivillonsun: "666-sun",
   litleo: "667",
   pyroar: "668",
+  pyroarf: "668-f",
   flabb: "669",
   flabbwhite: "669-white",
   flabborange: "669-orange",
@@ -854,6 +873,7 @@ const pkNumLookup = {
   furfroudiamond: "676-diamond",
   espurr: "677",
   meowstic: "678",
+  mewosticf: "678-f",
   honedge: "679",
   doublade: "680",
   aegislash: "681",
@@ -930,7 +950,7 @@ const pkNumLookup = {
   rockruff: "744",
   lycanroc: "745",
   lycanrocdusk: "745-dusk",
-  lycanrockmidnight: "745-midnight",
+  lycanrocmidnight: "745-midnight",
   wishiwashi: "746",
   wishiwashischool: "746-school",
   mareanie: "747",
@@ -1026,6 +1046,114 @@ const pkNumLookup = {
   zeraora: "807",
   meltan: "808",
   melmetal: "809",
+  grookey: "810",
+  thwackey: "811",
+  rillaboom: "812",
+  scorbunny: "813",
+  raboot: "814",
+  cinderace: "815",
+  sobble: "816",
+  drizzile: "817",
+  inteleon: "818",
+  skwovet: "819",
+  greedent: "820",
+  rookidee: "821",
+  corvisquire: "822",
+  corviknight: "823",
+  blipbug: "824",
+  dottler: "825",
+  orbeetle: "826",
+  nickit: "827",
+  thievul: "828",
+  gossifleur: "829",
+  eldegoss: "830",
+  wooloo: "831",
+  dubwool: "832",
+  chewtle: "833",
+  drednaw: "834",
+  yamper: "835",
+  boltund: "836",
+  rolycoly: "837",
+  carkol: "838",
+  coalossal: "839",
+  applin: "840",
+  flapple: "841",
+  appletun: "842",
+  silicobra: "843",
+  sandaconda: "844",
+  cramorant: "845",
+  cramorantgulping: "845-gulping",
+  cramorantgorging: "845-gorging",
+  arrokuda: "846",
+  barraskewda: "847",
+  toxel: "848",
+  toxtricity: "849",
+  toxtricitylowkey: "849-lowkey",
+  sizzlipede: "850",
+  centiskorch: "851",
+  clobbopus: "852",
+  grapploct: "853",
+  sinistea: "854",
+  polteageist: "855",
+  hatenna: "856",
+  hattrem: "857",
+  hatterene: "858",
+  impidimp: "859",
+  morgrem: "860",
+  grimmsnarl: "861",
+  obstagoon: "862",
+  perrserker: "863",
+  cursola: "864",
+  sirfetchd: "865",
+  mrrime: "866",
+  runerigus: "867",
+  milcery: "868",
+  alcremie: "869",
+  alcremierubycream: "869-ruby-cream",
+  alcremiemintcream: "869-mint-cream",
+  alcremielemoncream: "869-lemon-cream",
+  alcremiesaltedcream: "869-salted-cream",
+  alcremiematchacream: "869-matcha-cream",
+  alcremierubyswirl: "869-ruby-swirl",
+  alcremiecaramelswirl: "869-caramel-swirl",
+  alcremierainbowswirl: "869-rainbow-swirl",
+  falinks: "870",
+  pincurchin: "871",
+  snom: "872",
+  frosmoth: "873",
+  stonjourner: "874",
+  eiscue: "875",
+  indeedee: "876",
+  indeedeef: "876-f",
+  morpeko: "877",
+  morpekohangry: "877-hangry",
+  cufant: "878",
+  copperajah: "879",
+  dracozolt: "880",
+  arctozolt: "881",
+  dracovish: "882",
+  arctovish: "883",
+  duraludon: "884",
+  dreepy: "885",
+  drakloak: "886",
+  dragapult: "887",
+  zacian: "888",
+  zaciancrowned: "888-crowned",
+  zamazenta: "889",
+  zamazentacrowned: "889-crowned",
+  eternatus: "890",
+  kubfu: "891",
+  urshifu: "892",
+  urshifurapidstrike: "892-rapid-strike",
+  zarude: "893",
+  zarudedada: "893-dada",
+  regieleki: "894",
+  regidrago: "895",
+  glastrier: "896",
+  spectrier: "897",
+  calyrex: "898",
+  calyrexice: "898-ice",
+  calyrexshadow: "898-shadow",
   rattataalola: "19-alola",
   raticatealola: "20-alola",
   raichualola: "26-alola",
@@ -1044,6 +1172,26 @@ const pkNumLookup = {
   mukalola: "89-alola",
   exeggutoralola: "103-alola",
   marowakalola: "105-alola",
+  meowthgalar: "52-galar",
+  ponytagalar: "77-galar",
+  rapidashgalar: "78-galar",
+  slowpokegalar: "79-galar",
+  slowbrogalar: "80-galar",
+  farfetchdgalar: "83-galar",
+  weezinggalar: "110-galar",
+  mrmimegalar: "122-galar",
+  articunogalar: "144-galar",
+  zapdosgalar: "145-galar",
+  moltresgalar: "146-galar",
+  slowkinggalar: "199-galar",
+  corsolagalar: "222-galar",
+  zigzagoongalar: "263-galar",
+  linoonegalar: "264-galar",
+  darumakagalar: "552-galar",
+  darmanitanzengalar: "555-galar-zen",
+  darmanitangalar: "555-galar",
+  yamaskgalar: "562-galar",
+  stunfiskgalar: "618-galar",
   venusaurgmax: "3-gmax",
   charizardgmax: "6-gmax",
   blastoisegmax: "9-gmax",
@@ -1069,6 +1217,7 @@ const pkNumLookup = {
   appletungmax: "841-gmax",
   silicobragmax: "844-gmax",
   toxtricitygmax: "849-gmax",
+  toxtricitylowkeygmax: "849-gmax",
   centiskorchgmax: "851-gmax",
   hatterenegmax: "859-gmax",
   grimmsnarlgmax: "861-gmax",
@@ -2026,6 +2175,8 @@ async function constructImage(inputs){
   var abilityImg;
   var currentStatImg;
 
+  const majorGenderDifferences = ["pyroar", "unfezant"];
+
   inputs[6] = inputs[6].toLowerCase();
 
   //Shinyness
@@ -2089,6 +2240,32 @@ async function constructImage(inputs){
   }
 
   //Ability
+  const abilityLengthMap = (ability) => abilityLengthLookup[ability] || false;
+
+  const abilityLengthLookup = {
+    chillingneigh: "CHILL. NEIGH",
+    curiousmedicine: "CURIOUS MEDS.",
+    dauntlessshield: "DAUNT. SHIELD",
+    electricsurge: "ELEC. SURGE",
+    emergencyexit: "EMERG. EXIT",
+    fullmetalbody: "F.M. BODY",
+    gorillatactics: "GOR. TACTICS",
+    intrepidsword: "INTREPID SWRD",
+    neutralizinggas: "NEUT. GAS",
+    powerconstruct: "PWR. CNSTRCT.",
+    powerofalchemy: "PWR. OF ALCH.",
+    primordialsea: "PRMRDIAL. SEA",
+    propellertail: "PROP. TAIL",
+    queenlymajesty: "QUEENLY MAJ.",
+    wanderingspirit: "WANDER. SPIRIT",
+    watercompaction: "H2O COMPACT.",
+    screencleaner: "SCRN CLEANER",
+  };
+
+  if(abilityLengthMap(inputs[4].replace(/[^0-9a-z]/gi, '').toLowerCase())){
+    inputs[4] = abilityLengthMap(inputs[4].replace(/[^0-9a-z]/gi, '').toLowerCase());
+  }
+
   if(inputs[4]){
     abilityImg = await constructDarkText(inputs[4].toUpperCase());
   }
@@ -2099,18 +2276,19 @@ async function constructImage(inputs){
   //Species name (There are special cases where form is meaningless for species name and is removed for this text)
   //eg Gastrodon-East or Cherrim-Sunshine
   var specNameImg;
-  var hasMeaninglessEnding = false;
-  const meaninglessEndings = ["-original", "-busted", "-indigo", "-violet", "-meteor", "-school", "-continental", "-archipelago", "-modern", "-pokeball", "-fancy", "-icy snow", "-tundra", "-jungle", "-marine", "-monsoon", "-high plains", "-elegant", "-garden", "-river", "-sandstorm", "-savanna", "-sun", "-blue", "-orange", "-white", "-yellow", "-dandy", "-debutant", "-pharaoh", "-star", "-heart", "-matron", "-la reine", "-diamond", "-blade", "-pirouette","-resolute", "-burn", "-douse", "-shock", "-chill", "-summer", "-autumn", "-winter", "-zen","-blue-striped","-east", "-sunshine", "-sunny", "-snowy", "-rainy", "-a", "-b", "-c", "-d", "-e", "-f", "-g", "-h", "-i", "-j", "-k", "-l", "-m", "-n", "-o", "-p", "-q", "-r", "-s", "-t", "-u", "-v", "-w", "-x", "-y", "-!", "-?"];
+  var meaninglessEnding;
+  const meaninglessEndings = ["-ruby-swirl", "-caramel-swirl", "-rainbow-swirl", "-lemon-cream", "-mint-cream", "-matcha-cream", "-ruby-cream", "-salted-cream", "-low-key", "-hangry", "-dada", "-noice", "-gorging", "-gulping", "-phd", "-belle", "-cosplay", "-rock-star", "-pop-star", "libre", "-original", "-busted", "-indigo", "-violet", "-meteor", "-school", "-continental", "-archipelago", "-modern", "-pokeball", "-fancy", "-icy snow", "-tundra", "-jungle", "-marine", "-monsoon", "-high plains", "-elegant", "-garden", "-river", "-sandstorm", "-savanna", "-sun", "-blue", "-orange", "-white", "-yellow", "-dandy", "-debutant", "-pharaoh", "-star", "-heart", "-matron", "-la reine", "-diamond", "-blade", "-pirouette","-resolute", "-burn", "-douse", "-shock", "-chill", "-summer", "-autumn", "-winter", "-zen","-blue-striped","-east", "-sunshine", "-sunny", "-snowy", "-rainy", "-a", "-b", "-c", "-d", "-e", "-f", "-g", "-h", "-i", "-j", "-k", "-l", "-m", "-n", "-o", "-p", "-q", "-r", "-s", "-t", "-u", "-v", "-w", "-x", "-y", "-!", "-?"];
   for(let i = 0; i < meaninglessEndings.length; i++){
     if(inputs[1].toLowerCase().endsWith(meaninglessEndings[i])){
-      hasMeaninglessEnding = true;
+      meaninglessEnding = meaninglessEndings[i];
     }
   }
-  if(hasMeaninglessEnding || inputs[1].toLowerCase() === "unown-z"){
-    specNameImg = await constructLightText(inputs[1].toUpperCase().substring(0,(inputs[1].lastIndexOf('-'))));
+  if(meaninglessEnding){
+    specNameImg = await constructLightText(inputs[1].replace(meaninglessEnding, "").toUpperCase());
   }
-  else if(inputs[1].toLowerCase().indexOf("-rapid-strike") != -1){
-    specNameImg = await constructLightText(inputs[1].toLowerCase().replace("-rapid-strike", "-RS").toUpperCase());
+  else if(inputs[1].toLowerCase() === "unown-z"){
+    //"-z" is not listed as a meaningless ending because of porygon-z, so Unown-z has to be treated as a special case.
+    specNameImg = await constructLightText("UNOWN");
   }
   else{
     specNameImg = await constructLightText(inputs[1].toUpperCase());
@@ -2281,6 +2459,33 @@ async function constructImage(inputs){
   }
 
   //Pokemon Sprite
+  if(majorGenderDifferences.includes(inputs[1].toLowerCase()) && inputs[3] === 'F'){
+    inputs[1] = inputs[1] + "f";
+  }
+
+  if(inputs[1].toLowerCase() === "pikachu"){
+    console.log("is pikachu");
+    var hasSurf = false;
+    var hasFly = false;
+    for(let i = 0; i < inputs[8].length; i++){
+      if(inputs[8][i].toLowerCase() === 'surf'){
+        hasSurf = true;
+        console.log("has surf");
+      }
+      if(inputs[8][i].toLowerCase() === 'fly'){
+        hasFly = true;
+      }
+    }
+    if(hasSurf ^ hasFly){
+      if(hasSurf){
+        inputs[1] = inputs[1] + "-surf";
+      }
+      if(hasFly){
+        inputs[1] = inputs[1] + "-fly";
+      }
+    }
+  }
+
   let dexNum = numMap(inputs[1].replace('?', "question").replace('!',"exclamation").replace(/[^0-9a-z]/gi, '').toLowerCase());
   var speciesImg;
   if(dexNum === "notPresent"){
@@ -2300,11 +2505,11 @@ async function constructImage(inputs){
   var gendImg;
   if(inputs[3] === 'M'){
     gendImg = await jimp.read('images/male.png');
-    await base.composite(gendImg, 105, 19);
+    await base.composite(gendImg, 111, 19);
   }
   if(inputs[3] === 'F'){
     gendImg = await jimp.read('images/female.png');
-    await base.composite(gendImg, 105, 19);
+    await base.composite(gendImg, 111, 19);
   }
 
   //level
@@ -2312,8 +2517,8 @@ async function constructImage(inputs){
   base.composite(levelImg, 14, 18);
 
   //nickname
-  var nickNameImg = await constructLightText(inputs[0].substring(0,10));
-  base.composite(nickNameImg, 40, 18);
+  var nickNameImg = await constructLightText(inputs[0].substring(0,12));
+  base.composite(nickNameImg, 36, 18);
 
   //Composite everything else
   await base.composite(itemImg, 7, 113);
@@ -2324,8 +2529,17 @@ async function constructImage(inputs){
     await base.composite(typeImg, 94, 105 + i*13);
   }
   await base.composite(itemIcon, 115 - itemIcon.bitmap.width, 93 - itemIcon.bitmap.height);
+  var topBar = await jimp.read('images/topbar.png');
+  const topBarInsertion = specNameImg.bitmap.width + 6;
+  topBar = topBar.crop(0,0,240-topBarInsertion, 16);
+  if(topBarInsertion > 118){
+    await base.composite(topBar,topBarInsertion, 0);
+  }
+  else{
+    await base.composite(topBar,118,0);
+  }
   await base.composite(specNameImg, 3,0);
-  await base.write('images/temp/output-' + inputs[0] + '.png');
+  await base.write('outputs/regular-' + inputs[0] + '.png');
   base = await base.resize(960,640, jimp.RESIZE_NEAREST_NEIGHBOR);
-  await base.write('images/temp/output-large-' + inputs[0] + '.png');
+  await base.write('outputs/large-' + inputs[0] + '.png');
 }
